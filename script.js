@@ -4,7 +4,7 @@ const music = document.getElementById('birthday-music');
 const replayButton = document.getElementById('replay');
 
 // Set the date and time for the countdown
-const birthday = new Date('2024-08-31T00:25:00').getTime();
+const birthday = new Date('2024-08-30T00:25:00').getTime();
 
 // Update the countdown every second
 const interval = setInterval(() => {
