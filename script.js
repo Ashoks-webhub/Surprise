@@ -2,6 +2,9 @@
 const countdownElement = document.getElementById('countdown');
 const birthdayDate = new Date('2024-08-31T00:00:00').getTime();
 const music = document.getElementById('birthdayMusic');
+const startButton = document.getElementById('startButton');
+const replayButton = document.getElementById('replayButton');
+const waitingMessage = document.getElementById('waitingMessage');
 
 function updateCountdown() {
     const now = new Date().getTime();
@@ -17,6 +20,7 @@ function updateCountdown() {
     if (timeleft < 0) {
         clearInterval(countdownInterval);
         countdownElement.innerHTML = "Happy Birthday, Saranya!";
+        waitingMessage.style.display = 'none';
         launchBlast();
     }
 }
@@ -25,8 +29,7 @@ const countdownInterval = setInterval(updateCountdown, 1000);
 
 // Confetti Blast with Emojis
 function launchBlast() {
-    // Play the birthday music
-    music.play();
+    music.play();  // Play the birthday music
 
     const duration = 15 * 1000;
     const animationEnd = Date.now() + duration;
@@ -74,7 +77,16 @@ function launchBlast() {
     }, 250);
 }
 
+// Start the countdown and music on user interaction
+startButton.addEventListener('click', () => {
+    startButton.style.display = 'none'; // Hide the start button
+    replayButton.style.display = 'inline-block'; // Show the replay button
+    waitingMessage.style.display = 'none'; // Hide the waiting message
+    updateCountdown();
+    launchBlast(); // Initial confetti blast
+});
+
 // Replay Button for Confetti
-document.getElementById('replayButton').addEventListener('click', () => {
+replayButton.addEventListener('click', () => {
     launchBlast();
 });
